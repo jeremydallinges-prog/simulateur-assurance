@@ -16,95 +16,43 @@
     --text: #1A1A1A;
     --text-muted: #6B6B6B;
     --white: #FFFFFF;
-    --green: #1A3C34;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    min-height: 100vh;
-    color: var(--text);
-    line-height: 1.6;
-  }
-
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; }
   .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
 
-  /* HEADER STYLE */
-  .hero { text-align: center; margin-bottom: 40px; }
+  /* HEADER */
+  .hero { text-align: center; margin-bottom: 30px; }
   .logo-top { width: 140px; margin-bottom: 20px; }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--navy); margin-bottom: 10px; }
-  .hero p { color: var(--text-muted); font-weight: 400; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--navy); margin-bottom: 5px; }
 
-  /* CARD STYLE */
-  .card {
-    background: var(--white);
-    padding: 40px;
-    border-radius: 24px;
-    box-shadow: 0 15px 35px rgba(26, 60, 52, 0.08);
-    border: 1px solid var(--cream-dark);
-  }
+  /* TABS SELECTION */
+  .tabs { display: flex; background: var(--cream-dark); padding: 5px; border-radius: 12px; margin-bottom: 25px; }
+  .tab { flex: 1; text-align: center; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: 0.3s; color: var(--navy-mid); }
+  .tab.active { background: var(--navy); color: var(--white); }
 
-  .form-group { margin-bottom: 25px; }
-  label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; }
+  /* CARD */
+  .card { background: var(--white); padding: 35px; border-radius: 24px; box-shadow: 0 15px 35px rgba(26, 60, 52, 0.08); border: 1px solid var(--cream-dark); }
+  .form-group { margin-bottom: 20px; }
+  label { display: block; font-weight: 600; font-size: 0.8rem; margin-bottom: 8px; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; }
+  input, select { width: 100%; padding: 14px; border: 2px solid var(--cream-dark); border-radius: 10px; font-size: 1rem; font-family: 'DM Sans', sans-serif; background: var(--cream); transition: 0.3s; }
+  input:focus { outline: none; border-color: var(--gold); background: var(--white); }
 
-  input, select {
-    width: 100%;
-    padding: 16px;
-    border: 2px solid var(--cream-dark);
-    border-radius: 12px;
-    font-size: 1rem;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.3s ease;
-    background: var(--cream);
-  }
+  /* RESULTS */
+  .results { margin-top: 25px; padding: 25px; background: var(--navy); border-radius: 20px; color: var(--white); text-align: center; display: none; }
+  .eco-value { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: var(--white); margin: 5px 0; }
+  .btn-wa { display: block; background: var(--gold); color: var(--navy); text-decoration: none; padding: 16px; border-radius: 12px; font-weight: 700; margin-top: 20px; text-transform: uppercase; }
 
-  input:focus, select:focus {
-    outline: none;
-    border-color: var(--gold);
-    background: var(--white);
-    box-shadow: 0 0 0 4px rgba(61, 185, 132, 0.1);
-  }
+  /* FAQ Accordion */
+  .faq-section { margin-top: 50px; }
+  .faq-item { background: var(--white); margin-bottom: 10px; border-radius: 10px; border: 1px solid var(--cream-dark); overflow: hidden; }
+  .faq-question { padding: 15px 20px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--navy); }
+  .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s ease-out; font-size: 0.9rem; color: var(--text-muted); }
+  .faq-item.open .faq-answer { padding: 15px 20px; max-height: 200px; }
 
-  /* RESULT BOX */
-  .results {
-    margin-top: 30px;
-    padding: 30px;
-    background: var(--navy);
-    border-radius: 20px;
-    color: var(--white);
-    text-align: center;
-    display: none;
-    animation: fadeIn 0.5s ease;
-  }
-
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-  .eco-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-light); margin-bottom: 10px; }
-  .eco-value { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
-
-  .btn-wa {
-    display: block;
-    background: var(--gold);
-    color: var(--navy);
-    text-decoration: none;
-    padding: 18px;
-    border-radius: 12px;
-    font-weight: 700;
-    margin-top: 25px;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .btn-wa:hover { background: var(--gold-light); transform: translateY(-2px); }
-
-  /* FOOTER */
   .footer { margin-top: 40px; text-align: center; }
-  .profile-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); margin-bottom: 15px; }
-  .footer-name { font-weight: 700; color: var(--navy); }
-  .footer-orias { font-size: 0.75rem; color: var(--text-muted); margin-top: 5px; }
+  .profile-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 10px; }
 </style>
 </head>
 <body>
@@ -113,77 +61,110 @@
   <div class="hero">
     <img src="NEW LOGO.png" alt="L'AGENCE by Pretto" class="logo-top">
     <h1>Loi Lemoine</h1>
-    <p>Réduisez le coût de votre assurance de prêt</p>
+    <p>Simulez votre économie d'assurance</p>
   </div>
 
   <div class="card">
+    <div class="tabs">
+      <div class="tab active" onclick="setMode('solo')">Seul</div>
+      <div class="tab" onclick="setMode('couple')">En Couple</div>
+    </div>
+
     <div class="form-group">
       <label>Capital restant dû</label>
       <input type="number" id="cap" placeholder="Ex: 250000" oninput="calc()">
     </div>
 
-    <div style="display: flex; gap: 20px;">
+    <div style="display: flex; gap: 15px;">
       <div class="form-group" style="flex: 1;">
         <label>Votre âge</label>
-        <input type="number" id="age" placeholder="35" oninput="calc()">
+        <input type="number" id="age1" placeholder="35" oninput="calc()">
       </div>
-      <div class="form-group" style="flex: 1;">
-        <label>Fumeur ?</label>
-        <select id="smoke" onchange="calc()">
-          <option value="non">Non</option>
-          <option value="oui">Oui</option>
-        </select>
+      <div id="box-age2" class="form-group" style="flex: 1; display: none;">
+        <label>Âge Co-emprunteur</label>
+        <input type="number" id="age2" placeholder="32" oninput="calc()">
       </div>
     </div>
 
+    <div class="form-group">
+      <label>Statut Fumeur</label>
+      <select id="smoke" onchange="calc()">
+        <option value="non">Non-fumeur</option>
+        <option value="oui">Fumeur</option>
+      </select>
+    </div>
+
     <div id="res-box" class="results">
-      <div class="eco-title">Économie potentielle estimée</div>
+      <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--gold-light);">Économie potentielle (20 ans)</div>
       <div class="eco-value" id="res-val">0 €</div>
-      <p style="font-size: 0.8rem; opacity: 0.8;">Sur la base des contrats banques traditionnelles</p>
-      <a href="#" id="wa-btn" class="btn-wa">Obtenir mon étude personnalisée</a>
+      <a href="#" id="wa-btn" class="btn-wa">Étude gratuite par Jérémy</a>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px; color: var(--navy);">Questions fréquentes</h2>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-question">Peut-on vraiment changer à tout moment ? <span>+</span></div>
+      <div class="faq-answer">Oui, la Loi Lemoine permet de résilier votre assurance bancaire n'importe quand, sans frais ni pénalités.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-question">Le questionnaire de santé est-il obligatoire ? <span>+</span></div>
+      <div class="faq-answer">Pas si votre part assurée est < 200k€ et que le prêt finit avant vos 60 ans.</div>
     </div>
   </div>
 
   <div class="footer">
     <img src="Photo pro DALLINGES.jpeg" alt="Jérémy Dallinges" class="profile-img">
-    <div class="footer-name">Jérémy DALLINGES</div>
-    <div class="footer-orias">Expert Crédit — ORIAS 23006269</div>
-    <p style="font-size: 0.65rem; color: #999; margin-top: 20px; line-height: 1.4;">
-      Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement.<br>
-      Partenaires : Suravenir, MNCAP, SwissLife, CNP.
-    </p>
+    <div style="font-weight: 700;">Jérémy DALLINGES</div>
+    <div style="font-size: 0.75rem; color: var(--text-muted);">Expert Crédit — ORIAS 23006269</div>
   </div>
 </div>
 
 <script>
+let mode = 'solo';
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('box-age2').style.display = (m === 'couple') ? 'block' : 'none';
+  calc();
+}
+
 function calc() {
   const c = parseFloat(document.getElementById('cap').value);
-  const a = parseInt(document.getElementById('age').value);
+  const a1 = parseInt(document.getElementById('age1').value);
+  const a2 = mode === 'couple' ? parseInt(document.getElementById('age2').value) : 0;
   const s = document.getElementById('smoke').value;
 
-  if (!c || !a) return;
+  if (!c || !a1) return;
 
-  // Logique métier
-  let t_b = a < 35 ? 0.30 : (a < 45 ? 0.45 : 0.65);
-  let t_e = a < 35 ? 0.10 : (a < 45 ? 0.18 : 0.35);
+  function getTaux(age) {
+    let tb = age < 35 ? 0.32 : (age < 45 ? 0.48 : 0.65);
+    let te = age < 35 ? 0.11 : (age < 45 ? 0.19 : 0.36);
+    if (s === "oui") { te *= 1.7; tb *= 1.3; }
+    return { tb, te };
+  }
 
-  if (s === "oui") { t_e *= 1.75; t_b *= 1.4; }
+  const p1 = getTaux(a1);
+  let total_tb = p1.tb;
+  let total_te = p1.te;
 
-  const eco = ((c * t_b / 100) - (c * t_e / 100)) * 20;
+  if (mode === 'couple' && a2) {
+    const p2 = getTaux(a2);
+    // On simule une quotité 50/50 pour la simplicité
+    total_tb = (p1.tb + p2.tb) / 1.2; 
+    total_te = (p1.te + p2.te) / 1.2;
+  }
+
+  const eco = ((c * total_tb / 100) - (c * total_te / 100)) * 20;
 
   document.getElementById('res-box').style.display = 'block';
   document.getElementById('res-val').innerText = Math.round(eco).toLocaleString() + " €";
 
-  const msg = encodeURIComponent(
-    `Bonjour Jérémy ! Simulation d'assurance effectuée :\n` +
-    `- Capital : ${c.toLocaleString()} €\n` +
-    `- Âge : ${a} ans\n` +
-    `- Économie : ${Math.round(eco).toLocaleString()} €\n\n` +
-    `Peux-tu m'aider à changer d'assurance ?`
-  );
+  const msg = encodeURIComponent(`Bonjour Jérémy ! Simulation d'assurance :\\n- Mode : ${mode}\\n- Capital : ${c.toLocaleString()} €\\n- Économie : ${Math.round(eco).toLocaleString()} €.\\nPeux-tu m'aider ?`);
   document.getElementById('wa-btn').href = `https://wa.me/33609163435?text=${msg}`;
 }
 </script>
-
 </body>
 </html>
