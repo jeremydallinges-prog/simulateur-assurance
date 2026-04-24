@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expertise Assurance - Jérémy Dallinges</title>
+    <!-- Utilisation de Montserrat pour le côté Bold de Pretto -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pretto-green: #00a371;
+            --dark-brand: #1a1a1a;
+            --soft-grey: #f8fafc;
+            --text-main: #1e293b;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-grey);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 440px;
+            background: #ffffff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .header-brand {
+            padding: 35px 30px 20px;
+            text-align: center;
+        }
+
+        .logo-pretto { width: 150px; }
+
+        .profile-section {
+            background-color: var(--dark-brand);
+            padding: 35px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 115px;
+            height: 115px;
+            border-radius: 50%;
+            border: 5px solid var(--pretto-green);
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .profile-name { font-weight: 800; font-size: 1.3rem; margin: 0; letter-spacing: -0.5px; }
+        .profile-title { font-weight: 400; font-size: 0.85rem; color: #94a3b8; margin-top: 5px; }
+
+        .calculator-body { padding: 35px; }
+
+        .input-group { margin-bottom: 22px; }
+        label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #64748b; display: block; margin-bottom: 10px; }
+
+        input, select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        input:focus { border-color: var(--pretto-green); background-color: #f0fdfa; }
+
+        .result-container {
+            background: #ecfdf5;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 10px;
+            border: 2px solid #d1fae5;
+            display: none;
+        }
+
+        .result-label { font-size: 0.8rem; color: #065f46; font-weight: 700; text-transform: uppercase; }
+        .amount { font-size: 2.6rem; font-weight: 800; color: var(--pretto-green); margin: 8px 0; letter-spacing: -1px; }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 1rem;
+            margin-top: 30px;
+            box-shadow: 0 10px 15px -3px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-whatsapp:hover { transform: translateY(-2px); }
+
+        .legal-footer {
+            padding: 25px 35px;
+            font-size: 0.65rem;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.6;
+            border-top: 1px solid #f1f5f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header-brand">
+        <img src="NEW LOGO.png" alt="L'AGENCE by Pretto" class="logo-pretto">
+    </div>
+
+    <div class="profile-section">
+        <img src="Photo pro DALLINGES.jpeg" alt="Jérémy Dallinges" class="profile-img">
+        <p class="profile-name">Jérémy DALLINGES</p>
+        <p class="profile-title">Mandataire L'AGENCE by Pretto</p>
+    </div>
+
+    <div class="calculator-body">
+        <div class="input-group">
+            <label>Capital restant dû</label>
+            <input type="number" id="capital" placeholder="Ex: 250000" oninput="runSim()">
+        </div>
+
+        <div style="display: flex; gap: 15px;">
+            <div class="input-group" style="flex: 1.2;">
+                <label>Votre Âge</label>
+                <input type="number" id="age" placeholder="Ex: 35" oninput="runSim()">
+            </div>
+            <div class="input-group" style="flex: 1;">
+                <label>Fumeur ?</label>
+                <select id="fumeur" onchange="runSim()">
+                    <option value="non">Non</option>
+                    <option value="oui">Oui</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="result-area" class="result-container">
+            <span class="result-label">Économie Loi Lemoine</span>
+            <div class="amount" id="savings-val">0 €</div>
+            <p style="font-size: 0.7rem; color: #065f46; font-weight: 600; margin: 0;">Estimation via Suravenir, MNCAP, SwissLife</p>
+
+            <a href="#" id="wa-cta" class="btn-whatsapp">
+                VÉRIFIER MON ÉCONOMIE
+            </a>
+        </div>
+    </div>
+
+    <div class="legal-footer">
+        Jérémy DALLINGES - Mandataire L'AGENCE by Pretto<br>
+        <strong>ORIAS : 23006269</strong> | Tél: 06 09 16 34 35<br>
+        Expertise Digital Insure : MNCAP, Suravenir, SwissLife, CNP.<br>
+        <span style="display:block; margin-top:8px;">Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement.</span>
+    </div>
+</div>
+
+<script>
+function runSim() {
+    const cap = parseFloat(document.getElementById('capital').value);
+    const age = parseInt(document.getElementById('age').value);
+    const isFumeur = document.getElementById('fumeur').value;
+
+    if (!cap || !age) return;
+
+    // Calculateur optimisé
+    let t_bnq = age < 35 ? 0.30 : (age < 45 ? 0.45 : 0.65);
+    let t_exp = age < 35 ? 0.10 : (age < 45 ? 0.18 : 0.35);
+
+    if (isFumeur === "oui") {
+        t_exp *= 1.75;
+        t_bnq *= 1.4;
+    }
+
+    const economie = ((cap * t_bnq / 100) - (cap * t_exp / 100)) * 20;
+
+    document.getElementById('result-area').style.display = 'block';
+    document.getElementById('savings-val').innerText = Math.round(economie).toLocaleString() + " €";
+
+    const txt = `Bonjour Jérémy ! Simulation d'assurance effectuée :
+- Capital : ${cap.toLocaleString()} €
+- Profil : ${age} ans (${isFumeur === 'oui' ? 'Fumeur' : 'Non-fumeur'})
+- Économie estimée : ${Math.round(economie).toLocaleString()} €
+
+Je souhaite une étude comparative avec Suravenir ou MNCAP.`;
+
+    document.getElementById('wa-cta').href = `https://wa.me/33609163435?text=${encodeURIComponent(txt)}`;
+}
+</script>
+
+</body>
+</html>
