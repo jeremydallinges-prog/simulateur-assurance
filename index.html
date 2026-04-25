@@ -16,8 +16,6 @@
             --text: #1A1A1A;
             --text-muted: #6B6B6B;
             --white: #FFFFFF;
-            --green: #1A3C34;
-            --green-light: #3DB984;
             --red: #C0392B;
             --red-light: #FFF0F0;
         }
@@ -32,7 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* HERO */
+        /* HERO SECTION */
         .hero {
             background: var(--navy);
             padding: 48px 24px 64px;
@@ -48,18 +46,6 @@
             background: radial-gradient(circle, rgba(61,185,132,0.15) 0%, transparent 70%);
             border-radius: 50%;
         }
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(24px, 4vw, 40px);
-            letter-spacing: -0.5px;
-            color: var(--white);
-            line-height: 1.15;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
-        }
-        .hero h1 span { color: var(--gold); }
-        
         .badge {
             display: inline-flex;
             align-items: center;
@@ -73,6 +59,23 @@
             font-weight: 500;
             margin-bottom: 20px;
             text-transform: uppercase;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(24px, 4vw, 40px);
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 12px;
+            position: relative; z-index: 1;
+        }
+        .hero h1 span { color: var(--gold); }
+        .hero p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.6);
+            max-width: 520px;
+            margin: 0 auto;
+            font-weight: 300;
+            position: relative; z-index: 1;
         }
 
         /* CONTAINER & CARD */
@@ -90,15 +93,15 @@
             overflow: hidden;
         }
 
-        .form-body { padding: 28px 28px 24px; }
+        .form-body { padding: 28px; }
         .section-title {
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             color: var(--text-muted);
             margin-bottom: 16px;
-            border-bottom: 1px solid var(--cream-dark);
             padding-bottom: 8px;
+            border-bottom: 1px solid var(--cream-dark);
         }
 
         .field-group {
@@ -107,27 +110,48 @@
             gap: 14px;
             margin-bottom: 14px;
         }
+        @media (max-width: 480px) { .field-group { grid-template-columns: 1fr; } }
 
         .field { display: flex; flex-direction: column; gap: 6px; }
         label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
 
+        .input-wrap { position: relative; display: flex; align-items: center; }
         input[type="number"], select {
             width: 100%;
-            padding: 13px 14px;
+            padding: 13px 40px 13px 14px;
             border: 1.5px solid var(--cream-dark);
             border-radius: 10px;
             background: var(--cream);
             font-size: 15px;
             outline: none;
+            transition: 0.2s;
         }
+        input:focus { border-color: var(--gold); background: #fff; }
+        .unit { position: absolute; right: 14px; font-size: 13px; font-weight: 600; color: var(--text-muted); }
 
-        .input-wrap { position: relative; }
-        .unit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 600; color: var(--text-muted); }
+        /* SLIDER */
+        .slider-field { margin: 20px 0; }
+        .slider-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .slider-value { font-weight: 700; color: var(--navy); }
+        input[type="range"] { width: 100%; cursor: pointer; accent-color: var(--navy); }
 
-        /* RESULTS STYLE */
-        .results { display: none; padding: 0 28px 28px; animation: fadeUp 0.4s ease; }
+        .cta-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .cta-btn:hover { background: var(--navy-mid); transform: translateY(-2px); }
+
+        /* RESULTS */
+        .results { display: none; padding: 0 28px 28px; animation: fadeUp 0.4s ease forwards; }
         .results.show { display: block; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .economy-hero {
             background: linear-gradient(135deg, #1A3C34 0%, #245C4F 100%);
@@ -137,19 +161,25 @@
             color: white;
             margin-bottom: 16px;
         }
-        .economy-amount { font-family: 'Montserrat', sans-serif; font-size: 40px; color: var(--gold-light); font-weight: 700; }
+        .economy-amount { font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 700; color: var(--gold-light); }
 
-        .cta-btn {
-            width: 100%;
-            padding: 16px;
-            background: var(--navy);
-            color: white;
-            border: none;
-            border-radius: 12px;
+        .urgency-band {
+            background: var(--red-light);
+            border: 1px solid #F5C6C6;
+            padding: 12px;
+            border-radius: 10px;
+            color: var(--red);
+            font-size: 13px;
             font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
+            margin-bottom: 16px;
+            text-align: center;
         }
+
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .compare-card { padding: 16px; border-radius: 12px; border: 1.5px solid var(--cream-dark); }
+        .compare-card.groupe { background: #FFF5F5; }
+        .compare-card.delegation { background: #F0FBF6; border-color: #A8E6C8; }
+        .compare-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; }
 
         .whatsapp-btn {
             display: flex;
@@ -162,9 +192,10 @@
             color: white;
             border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
         }
 
+        /* COURTIER SECTION */
         .courtier-section {
             display: flex;
             align-items: center;
@@ -173,29 +204,27 @@
             background: var(--cream);
             border-top: 1px solid var(--cream-dark);
         }
-        .photo-pro { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--gold); }
-
-        @media (max-width: 480px) {
-            .field-group { grid-template-columns: 1fr; }
-            .courtier-section { flex-direction: column; text-align: center; }
-        }
+        .photo-pro { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
+        .courtier-text { text-align: right; }
+        .courtier-name { font-weight: 700; color: var(--navy); }
     </style>
 </head>
 <body>
 
 <div class="hero">
-    <div class="badge">⚖️ Loi Lemoine — En vigueur</div>
+    <div class="badge">⚖️ Loi Lemoine — Économisez dès maintenant</div>
     <h1>Votre assurance groupe<br><span>vous coûte trop cher.</span></h1>
-    <p>Calculez l'économie réelle en passant à un contrat délégué à tout moment.</p>
+    <p>Calculez votre gain réel en passant à un contrat individuel — sans frais, à tout moment.</p>
 </div>
 
 <div class="container">
     <div class="card">
         <div class="form-body">
-            <div class="section-title">Votre prêt immobilier</div>
+            <div class="section-title">Détails de votre prêt</div>
+            
             <div class="field-group">
                 <div class="field">
-                    <label>Capital restant</label>
+                    <label>Capital restant dû</label>
                     <div class="input-wrap">
                         <input type="number" id="capital" placeholder="250000">
                         <span class="unit">€</span>
@@ -213,65 +242,121 @@
             <div class="field-group">
                 <div class="field">
                     <label>Votre âge</label>
-                    <input type="number" id="age" placeholder="35">
+                    <div class="input-wrap">
+                        <input type="number" id="age" placeholder="35">
+                        <span class="unit">ans</span>
+                    </div>
                 </div>
                 <div class="field">
-                    <label>Quotité</label>
+                    <label>Quotité assurée</label>
                     <select id="quotite">
-                        <option value="1">100 %</option>
-                        <option value="0.5">50 %</option>
+                        <option value="1">100% (Total)</option>
+                        <option value="0.75">75%</option>
+                        <option value="0.5">50%</option>
                     </select>
                 </div>
             </div>
 
-            <button class="cta-btn" onclick="simuler()">Calculer mon économie →</button>
+            <div class="slider-field">
+                <div class="slider-header">
+                    <label>Taux bancaire actuel (TAEA)</label>
+                    <span class="slider-value" id="tg-display">0,35 %</span>
+                </div>
+                <input type="range" id="taux-groupe" min="0.10" max="0.70" step="0.01" value="0.35" oninput="updateSlider(this.value)">
+            </div>
+
+            <button class="cta-btn" onclick="simuler()">CALCULER MON ÉCONOMIE →</button>
         </div>
 
         <div class="results" id="results">
             <div class="economy-hero">
-                <div style="font-size: 11px; text-transform: uppercase;">Économie totale estimée</div>
+                <div style="font-size: 11px; text-transform: uppercase; opacity: 0.8;">Économie potentielle totale</div>
                 <div class="economy-amount" id="res-eco">0 €</div>
+                <div id="res-eco-sub" style="font-size: 13px; opacity: 0.8;"></div>
             </div>
-            
+
+            <div class="urgency-band">
+                🔴 Chaque mois sans action = <span id="urgency-monthly">0 €</span> perdus.
+            </div>
+
+            <div class="compare-grid">
+                <div class="compare-card groupe">
+                    <div style="font-weight:700; color:var(--red); margin-bottom:8px;">🏦 Banque</div>
+                    <div class="compare-row"><span>Mensuel</span><span id="r-mensuel-groupe" style="font-weight:700;">-</span></div>
+                    <div class="compare-row"><span>Total</span><span id="r-total-groupe">-</span></div>
+                </div>
+                <div class="compare-card delegation">
+                    <div style="font-weight:700; color:var(--navy); margin-bottom:8px;">✅ Délégué</div>
+                    <div class="compare-row"><span>Mensuel</span><span id="r-mensuel-deleg" style="font-weight:700;">-</span></div>
+                    <div class="compare-row"><span>Total</span><span id="r-total-deleg">-</span></div>
+                </div>
+            </div>
+
             <a id="wa-link" href="#" class="whatsapp-btn" target="_blank">
                 Obtenir mon devis gratuit — Jeremy Dallinges
             </a>
         </div>
 
         <div class="courtier-section">
+            <div style="font-weight: 800; color: var(--navy); font-size: 18px;">L'AGENCE <span style="color: var(--gold);">PRETTO</span></div>
             <div class="courtier-info">
-                <img src="https://via.placeholder.com/150" class="photo-pro" alt="Jeremy Dallinges">
-                <div style="margin-left: 10px;">
-                    <div style="font-weight: 700;">Jeremy Dallinges</div>
-                    <div style="font-size: 12px; color: var(--text-muted);">Courtier à Toulouse</div>
+                <div class="courtier-text">
+                    <div class="courtier-name">Jeremy Dallinges</div>
+                    <div style="font-size: 11px; color: var(--text-muted);">Courtier Expert · Toulouse</div>
                 </div>
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jeremy" class="photo-pro" alt="Jeremy">
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    function updateSlider(val) {
+        document.getElementById('tg-display').textContent = parseFloat(val).toFixed(2).replace('.', ',') + ' %';
+    }
+
+    function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+
     function simuler() {
         const capital = parseFloat(document.getElementById('capital').value);
         const duree = parseInt(document.getElementById('duree').value);
-        const age = parseInt(document.getElementById('age').value);
+        const age = parseInt(document.getElementById('age').value) || 35;
         const quotite = parseFloat(document.getElementById('quotite').value);
+        const tauxGroupe = parseFloat(document.getElementById('taux-groupe').value) / 100;
 
-        if (!capital || !duree) return alert("Complétez les champs");
+        if (!capital || !duree) return alert("Veuillez remplir les informations de votre prêt.");
 
-        // Calcul simplifié expert
-        const tauxGroupe = 0.35 / 100; 
-        let tauxDeleg = age > 45 ? 0.12 / 100 : 0.07 / 100;
+        // Calcul Groupe
+        const mensuelGroupe = (capital * tauxGroupe / 12) * quotite;
+        const totalGroupe = mensuelGroupe * (duree * 12);
 
-        const coutGroupe = capital * tauxGroupe * duree * quotite;
-        const coutDeleg = capital * tauxDeleg * duree * quotite;
-        const ecoTot = coutGroupe - coutDeleg;
+        // Estimation Délégation (Expertise courtage)
+        let tauxDeleg = 0.08; 
+        if (age < 35) tauxDeleg = 0.06;
+        else if (age > 45) tauxDeleg = 0.12;
 
-        document.getElementById('res-eco').textContent = Math.round(ecoTot).toLocaleString() + " €";
-        document.getElementById('results').classList.add('show');
+        const mensuelDeleg = (capital * (tauxDeleg/100) / 12) * quotite;
+        const totalDeleg = mensuelDeleg * (duree * 12);
+
+        const ecoTot = totalGroupe - totalDeleg;
+        const ecoMois = mensuelGroupe - mensuelDeleg;
+
+        // Affichage
+        document.getElementById('res-eco').textContent = fmt(ecoTot);
+        document.getElementById('res-eco-sub').textContent = `Soit une baisse de ${Math.round(mensuelGroupe)}€ à ${Math.round(mensuelDeleg)}€/mois`;
+        document.getElementById('urgency-monthly').textContent = fmt(ecoMois);
         
-        const msg = encodeURIComponent(`Bonjour Jeremy, simulation Lemoine : Capital ${capital}€, Durée ${duree} ans. Économie : ${Math.round(ecoTot)}€.`);
+        document.getElementById('r-mensuel-groupe').textContent = fmt(mensuelGroupe) + "/m";
+        document.getElementById('r-total-groupe').textContent = fmt(totalGroupe);
+        document.getElementById('r-mensuel-deleg').textContent = fmt(mensuelDeleg) + "/m";
+        document.getElementById('r-total-deleg').textContent = fmt(totalDeleg);
+
+        // Lien WhatsApp personnalisé
+        const msg = encodeURIComponent(`Bonjour Jeremy, j'ai simulé une économie de ${fmt(ecoTot)} sur mon assurance emprunteur (Prêt de ${capital}€). Je souhaite un devis gratuit.`);
         document.getElementById('wa-link').href = `https://wa.me/33609163435?text=${msg}`;
+
+        document.getElementById('results').classList.add('show');
+        window.scrollTo({ top: document.getElementById('results').offsetTop, behavior: 'smooth' });
     }
 </script>
 
