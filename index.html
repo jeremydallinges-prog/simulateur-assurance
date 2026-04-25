@@ -1,807 +1,279 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulateur Loi Lemoine — Assurance Emprunteur — Jeremy Dallinges</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {{
-    --navy: #1A3C34;
-    --navy-mid: #245C4F;
-    --gold: #3DB984;
-    --gold-light: #6DCFAA;
-    --cream: #F4FAF7;
-    --cream-dark: #E0F0E9;
-    --text: #1A1A1A;
-    --text-muted: #6B6B6B;
-    --white: #FFFFFF;
-    --green: #1A3C34;
-    --green-light: #3DB984;
-    --red: #C0392B;
-    --red-light: #FFF0F0;
-  }}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur Loi Lemoine — Assurance Emprunteur — Jeremy Dallinges</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1A3C34;
+            --navy-mid: #245C4F;
+            --gold: #3DB984;
+            --gold-light: #6DCFAA;
+            --cream: #F4FAF7;
+            --cream-dark: #E0F0E9;
+            --text: #1A1A1A;
+            --text-muted: #6B6B6B;
+            --white: #FFFFFF;
+            --green: #1A3C34;
+            --green-light: #3DB984;
+            --red: #C0392B;
+            --red-light: #FFF0F0;
+        }
 
-  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {{
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    min-height: 100vh;
-    color: var(--text);
-    overflow-x: hidden;
-  }}
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: hidden;
+        }
 
-  /* HERO */
-  .hero {{
-    background: var(--navy);
-    padding: 48px 24px 64px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }}
-  .hero::before {{
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(61,185,132,0.15) 0%, transparent 70%);
-    border-radius: 50%;
-  }}
-  .hero::after {{
-    content: '';
-    position: absolute;
-    bottom: -60px; left: -60px;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(61,185,132,0.10) 0%, transparent 70%);
-    border-radius: 50%;
-  }}
-  .badge {{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(61,185,132,0.15);
-    border: 1px solid rgba(61,185,132,0.3);
-    color: var(--gold-light);
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-  }}
-  .hero h1 {{
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(24px, 4vw, 40px);
-    letter-spacing: -0.5px;
-    color: var(--white);
-    line-height: 1.15;
-    margin-bottom: 12px;
-    position: relative;
-    z-index: 1;
-  }}
-  .hero h1 span {{ color: var(--gold); }}
-  .hero p {{
-    font-size: 15px;
-    color: rgba(255,255,255,0.6);
-    max-width: 520px;
-    margin: 0 auto;
-    font-weight: 300;
-    line-height: 1.6;
-    position: relative;
-    z-index: 1;
-  }}
-  .lemoine-pill {{
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(61,185,132,0.2);
-    border: 1px solid rgba(61,185,132,0.4);
-    color: var(--gold-light);
-    padding: 5px 14px;
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    margin-top: 16px;
-    text-transform: uppercase;
-    position: relative;
-    z-index: 1;
-  }}
+        /* HERO */
+        .hero {
+            background: var(--navy);
+            padding: 48px 24px 64px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(61,185,132,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(24px, 4vw, 40px);
+            letter-spacing: -0.5px;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 span { color: var(--gold); }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(61,185,132,0.15);
+            border: 1px solid rgba(61,185,132,0.3);
+            color: var(--gold-light);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
 
-  /* CONTAINER */
-  .container {{
-    max-width: 700px;
-    margin: -32px auto 48px;
-    padding: 0 16px;
-    position: relative;
-    z-index: 10;
-  }}
+        /* CONTAINER & CARD */
+        .container {
+            max-width: 700px;
+            margin: -32px auto 48px;
+            padding: 0 16px;
+            position: relative;
+            z-index: 10;
+        }
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 8px 48px rgba(13,27,42,0.12);
+            overflow: hidden;
+        }
 
-  .card {{
-    background: var(--white);
-    border-radius: 20px;
-    box-shadow: 0 8px 48px rgba(13,27,42,0.12), 0 2px 8px rgba(13,27,42,0.06);
-    overflow: hidden;
-  }}
+        .form-body { padding: 28px 28px 24px; }
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--cream-dark);
+            padding-bottom: 8px;
+        }
 
-  /* FORM */
-  .form-body {{ padding: 28px 28px 24px; }}
+        .field-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
 
-  .section-title {{
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--cream-dark);
-  }}
+        .field { display: flex; flex-direction: column; gap: 6px; }
+        label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
 
-  .field-group {{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 14px;
-  }}
-  @media (max-width: 480px) {{
-    .field-group {{ grid-template-columns: 1fr; }}
-    .form-body {{ padding: 20px 16px 16px; }}
-  }}
+        input[type="number"], select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1.5px solid var(--cream-dark);
+            border-radius: 10px;
+            background: var(--cream);
+            font-size: 15px;
+            outline: none;
+        }
 
-  .field {{ display: flex; flex-direction: column; gap: 6px; }}
-  .field.full {{ grid-column: 1 / -1; }}
+        .input-wrap { position: relative; }
+        .unit { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; font-weight: 600; color: var(--text-muted); }
 
-  label {{
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }}
+        /* RESULTS STYLE */
+        .results { display: none; padding: 0 28px 28px; animation: fadeUp 0.4s ease; }
+        .results.show { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-  .input-wrap {{
-    position: relative;
-    display: flex;
-    align-items: center;
-  }}
+        .economy-hero {
+            background: linear-gradient(135deg, #1A3C34 0%, #245C4F 100%);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            color: white;
+            margin-bottom: 16px;
+        }
+        .economy-amount { font-family: 'Montserrat', sans-serif; font-size: 40px; color: var(--gold-light); font-weight: 700; }
 
-  input[type="number"], select {{
-    width: 100%;
-    padding: 13px 48px 13px 14px;
-    border: 1.5px solid var(--cream-dark);
-    border-radius: 10px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    color: var(--text);
-    background: var(--cream);
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    -moz-appearance: textfield;
-  }}
-  input[type="number"]::-webkit-inner-spin-button {{ -webkit-appearance: none; }}
-  input[type="number"]:focus, select:focus {{
-    border-color: var(--gold);
-    background: var(--white);
-  }}
+        .cta-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--navy);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
 
-  .unit {{
-    position: absolute;
-    right: 14px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-muted);
-    pointer-events: none;
-  }}
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            background: #25D366;
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+        }
 
-  select {{ padding-right: 14px; cursor: pointer; appearance: none; }}
+        .courtier-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 28px;
+            background: var(--cream);
+            border-top: 1px solid var(--cream-dark);
+        }
+        .photo-pro { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--gold); }
 
-  /* SLIDER */
-  .slider-field {{ margin-bottom: 20px; }}
-  .slider-header {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }}
-  .slider-label {{ font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }}
-  .slider-value {{ font-size: 16px; font-weight: 700; color: var(--navy); font-family: 'Montserrat', sans-serif; }}
-  .slider-hint {{ font-size: 11px; color: var(--text-muted); font-style: italic; margin-top: 6px; }}
-
-  input[type="range"] {{
-    width: 100%;
-    height: 6px;
-    border-radius: 3px;
-    background: var(--cream-dark);
-    outline: none;
-    cursor: pointer;
-    -webkit-appearance: none;
-  }}
-  input[type="range"]::-webkit-slider-thumb {{
-    -webkit-appearance: none;
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: var(--navy);
-    border: 3px solid var(--gold);
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(13,27,42,0.3);
-  }}
-
-  /* CTA BUTTON */
-  .cta-btn {{
-    width: 100%;
-    padding: 16px;
-    background: var(--navy);
-    color: var(--white);
-    border: none;
-    border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
-    margin-top: 4px;
-  }}
-  .cta-btn::before {{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 60%, rgba(61,185,132,0.2));
-  }}
-  .cta-btn:hover {{ background: var(--navy-mid); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,60,52,0.25); }}
-  .cta-btn:active {{ transform: translateY(0); }}
-
-  /* DIVIDER */
-  .divider {{
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 8px 0 20px;
-    color: var(--text-muted);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }}
-  .divider::before, .divider::after {{ content: ''; flex: 1; height: 1px; background: var(--cream-dark); }}
-
-  /* RESULTS */
-  .results {{
-    display: none;
-    padding: 0 28px 28px;
-    animation: fadeUp 0.4s ease;
-  }}
-  .results.show {{ display: block; }}
-  @keyframes fadeUp {{
-    from {{ opacity: 0; transform: translateY(12px); }}
-    to {{ opacity: 1; transform: translateY(0); }}
-  }}
-  @media (max-width: 480px) {{ .results {{ padding: 0 16px 20px; }} }}
-
-  /* ECONOMY HERO CARD */
-  .economy-hero {{
-    background: linear-gradient(135deg, #1A3C34 0%, #245C4F 100%);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 16px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }}
-  .economy-hero::before {{
-    content: '';
-    position: absolute;
-    top: -30px; right: -30px;
-    width: 120px; height: 120px;
-    background: radial-gradient(circle, rgba(61,185,132,0.2) 0%, transparent 70%);
-    border-radius: 50%;
-  }}
-  .economy-label {{
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: 8px;
-  }}
-  .economy-amount {{
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(30px, 7vw, 48px);
-    font-weight: 700;
-    color: var(--gold-light);
-    line-height: 1;
-    margin-bottom: 6px;
-  }}
-  .economy-sub {{
-    font-size: 13px;
-    color: rgba(255,255,255,0.55);
-  }}
-
-  /* URGENCY BAND */
-  .urgency-band {{
-    background: var(--red-light);
-    border: 1.5px solid #F5C6C6;
-    border-radius: 12px;
-    padding: 12px 16px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }}
-  .urgency-icon {{ font-size: 18px; flex-shrink: 0; }}
-  .urgency-text {{
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--red);
-    line-height: 1.3;
-  }}
-  .urgency-text span {{ font-weight: 700; }}
-
-  /* COMPARE GRID */
-  .compare-grid {{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 16px;
-  }}
-  @media (max-width: 480px) {{ .compare-grid {{ grid-template-columns: 1fr; }} }}
-
-  .compare-card {{
-    border-radius: 14px;
-    padding: 16px 14px;
-    border: 1.5px solid var(--cream-dark);
-  }}
-  .compare-card.groupe {{
-    background: #FFF5F5;
-    border-color: #F5C6C6;
-  }}
-  .compare-card.delegation {{
-    background: #F0FBF6;
-    border-color: #A8E6C8;
-  }}
-  .compare-card-header {{
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }}
-  .compare-card.groupe .compare-card-header {{ color: var(--red); }}
-  .compare-card.delegation .compare-card-header {{ color: var(--navy-mid); }}
-  .compare-row {{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    font-size: 13px;
-  }}
-  .compare-row:last-child {{ border-bottom: none; padding-bottom: 0; }}
-  .compare-row .clabel {{ color: var(--text-muted); font-size: 12px; }}
-  .compare-row .cval {{ font-weight: 600; }}
-  .compare-row .cval.red {{ color: var(--red); }}
-  .compare-row .cval.green {{ color: var(--navy-mid); }}
-
-  /* PARTENAIRES */
-  .partenaires-section {{ margin-bottom: 16px; }}
-  .partenaires-title {{
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-  }}
-  .partenaires-grid {{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-  }}
-  @media (max-width: 480px) {{ .partenaires-grid {{ grid-template-columns: repeat(2, 1fr); }} }}
-
-  .partenaire-pill {{
-    background: var(--cream);
-    border: 1.5px solid var(--cream-dark);
-    border-radius: 10px;
-    padding: 10px 6px;
-    text-align: center;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--navy);
-    position: relative;
-  }}
-  .partenaire-pill .p-icon {{ font-size: 14px; display: block; margin-bottom: 3px; }}
-  .partenaire-pill.exclu {{ border-color: var(--gold); background: rgba(61,185,132,0.07); }}
-  .exclu-tag {{
-    position: absolute;
-    top: -7px; right: 4px;
-    background: var(--gold);
-    color: white;
-    font-size: 7px;
-    font-weight: 700;
-    padding: 2px 5px;
-    border-radius: 100px;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-  }}
-
-  /* DROITS LOI LEMOINE */
-  .lemoine-section {{
-    background: linear-gradient(135deg, #EBF5FB 0%, #F0FBF6 100%);
-    border: 1.5px solid var(--cream-dark);
-    border-radius: 14px;
-    padding: 16px;
-    margin-bottom: 16px;
-  }}
-  .lemoine-title {{
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--navy);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }}
-  .lemoine-right {{
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(26,60,52,0.08);
-    font-size: 13px;
-  }}
-  .lemoine-right:last-child {{ border-bottom: none; }}
-  .lr-icon {{ font-size: 15px; flex-shrink: 0; margin-top: 1px; }}
-  .lr-text {{ color: var(--text-muted); line-height: 1.4; }}
-  .lr-text strong {{ color: var(--text); }}
-
-  /* WHATSAPP */
-  .whatsapp-btn {{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 16px;
-    background: #25D366;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-  }}
-  .whatsapp-btn:hover {{ background: #128C7E; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,211,102,0.3); }}
-  .whatsapp-icon {{ width: 22px; height: 22px; fill: white; flex-shrink: 0; }}
-
-  /* DISCLAIMER */
-  .disclaimer {{
-    text-align: center;
-    font-size: 11px;
-    color: var(--text-muted);
-    padding: 0 28px 24px;
-    line-height: 1.5;
-  }}
-  .disclaimer a {{ color: var(--text-muted); }}
-
-  /* COURTIER */
-  .courtier-section {{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 28px;
-    border-top: 1px solid var(--cream-dark);
-    background: var(--cream);
-    gap: 16px;
-    flex-wrap: wrap;
-  }}
-  .logo-img {{ height: 60px; width: auto; object-fit: contain; flex-shrink: 0; }}
-  .courtier-info {{ display: flex; align-items: center; gap: 14px; }}
-  .photo-pro {{
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: top;
-    border: 2px solid var(--gold);
-    flex-shrink: 0;
-  }}
-  .courtier-text {{ text-align: right; }}
-  .courtier-name {{ font-size: 15px; font-weight: 700; color: var(--navy); }}
-  .courtier-title {{ font-size: 12px; color: var(--text-muted); margin-top: 2px; }}
-  .courtier-location {{ font-size: 12px; color: var(--text-muted); margin-top: 1px; }}
-</style>
+        @media (max-width: 480px) {
+            .field-group { grid-template-columns: 1fr; }
+            .courtier-section { flex-direction: column; text-align: center; }
+        }
+    </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="badge">⚖️ Loi Lemoine — En vigueur depuis juin 2022</div>
-  <h1>Votre assurance groupe<br><span>vous coûte trop cher.</span></h1>
-  <p>Calculez votre coût mensuel réel et l'économie totale en passant à un contrat individuel délégué — sans frais, à tout moment.</p>
-  <div class="lemoine-pill">✓ Résiliation à tout moment · Pas de délai de carence</div>
+    <div class="badge">⚖️ Loi Lemoine — En vigueur</div>
+    <h1>Votre assurance groupe<br><span>vous coûte trop cher.</span></h1>
+    <p>Calculez l'économie réelle en passant à un contrat délégué à tout moment.</p>
 </div>
 
 <div class="container">
-  <div class="card">
+    <div class="card">
+        <div class="form-body">
+            <div class="section-title">Votre prêt immobilier</div>
+            <div class="field-group">
+                <div class="field">
+                    <label>Capital restant</label>
+                    <div class="input-wrap">
+                        <input type="number" id="capital" placeholder="250000">
+                        <span class="unit">€</span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Durée restante</label>
+                    <div class="input-wrap">
+                        <input type="number" id="duree" placeholder="20">
+                        <span class="unit">ans</span>
+                    </div>
+                </div>
+            </div>
 
-    <div class="form-body">
-      <div class="section-title">Votre prêt immobilier</div>
+            <div class="field-group">
+                <div class="field">
+                    <label>Votre âge</label>
+                    <input type="number" id="age" placeholder="35">
+                </div>
+                <div class="field">
+                    <label>Quotité</label>
+                    <select id="quotite">
+                        <option value="1">100 %</option>
+                        <option value="0.5">50 %</option>
+                    </select>
+                </div>
+            </div>
 
-      <div class="field-group">
-        <div class="field">
-          <label>Capital emprunté</label>
-          <div class="input-wrap">
-            <input type="number" id="capital" placeholder="250 000" min="10000" max="3000000">
-            <span class="unit">€</span>
-          </div>
+            <button class="cta-btn" onclick="simuler()">Calculer mon économie →</button>
         </div>
-        <div class="field">
-          <label>Durée restante</label>
-          <div class="input-wrap">
-            <input type="number" id="duree" placeholder="20" min="1" max="30">
-            <span class="unit">ans</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="field-group">
-        <div class="field">
-          <label>Votre âge</label>
-          <div class="input-wrap">
-            <input type="number" id="age" placeholder="35" min="18" max="75">
-            <span class="unit">ans</span>
-          </div>
+        <div class="results" id="results">
+            <div class="economy-hero">
+                <div style="font-size: 11px; text-transform: uppercase;">Économie totale estimée</div>
+                <div class="economy-amount" id="res-eco">0 €</div>
+            </div>
+            
+            <a id="wa-link" href="#" class="whatsapp-btn" target="_blank">
+                Obtenir mon devis gratuit — Jeremy Dallinges
+            </a>
         </div>
-        <div class="field">
-          <label>Quotité assurée</label>
-          <div class="input-wrap">
-            <select id="quotite">
-              <option value="1">100 % (seul ou 2 têtes 100%)</option>
-              <option value="0.75">75 % (deux têtes 75%)</option>
-              <option value="0.5">50 % (deux têtes 50%)</option>
-            </select>
-          </div>
-        </div>
-      </div>
 
-      <!-- TAUX GROUPE SLIDER -->
-      <div class="slider-field">
-        <div class="slider-header">
-          <span class="slider-label">Taux groupe bancaire (TAEA)</span>
-          <span class="slider-value" id="tg-display">0,30 %</span>
+        <div class="courtier-section">
+            <div class="courtier-info">
+                <img src="https://via.placeholder.com/150" class="photo-pro" alt="Jeremy Dallinges">
+                <div style="margin-left: 10px;">
+                    <div style="font-weight: 700;">Jeremy Dallinges</div>
+                    <div style="font-size: 12px; color: var(--text-muted);">Courtier à Toulouse</div>
+                </div>
+            </div>
         </div>
-        <input type="range" id="taux-groupe" min="0.15" max="0.60" value="0.30" step="0.01" oninput="updateSlider(this.value)">
-        <div class="slider-hint">Trouvez votre TAEA dans votre offre de prêt — en moyenne 0,25 % à 0,40 % du capital initial.</div>
-      </div>
-
-      <button class="cta-btn" onclick="simuler()">Calculer mon économie → </button>
     </div>
-
-    <!-- RÉSULTATS -->
-    <div class="results" id="results">
-      <div class="divider">Vos résultats</div>
-
-      <!-- ÉCONOMIE TOTALE -->
-      <div class="economy-hero">
-        <div class="economy-label">Économie potentielle sur la durée restante</div>
-        <div class="economy-amount" id="res-eco">—</div>
-        <div class="economy-sub" id="res-eco-sub">En passant à un contrat individuel délégué</div>
-      </div>
-
-      <!-- URGENCE -->
-      <div class="urgency-band" id="urgency-band">
-        <span class="urgency-icon">🔴</span>
-        <div class="urgency-text" id="urgency-text">
-          Chaque mois sans action = <span id="urgency-monthly">—</span> perdus inutilement.
-        </div>
-      </div>
-
-      <!-- COMPARATIF -->
-      <div class="compare-grid">
-        <div class="compare-card groupe">
-          <div class="compare-card-header">🏦 Contrat groupe</div>
-          <div class="compare-row">
-            <span class="clabel">Mensualité</span>
-            <span class="cval red" id="r-mensuel-groupe">—</span>
-          </div>
-          <div class="compare-row">
-            <span class="clabel">Coût total</span>
-            <span class="cval red" id="r-total-groupe">—</span>
-          </div>
-          <div class="compare-row">
-            <span class="clabel">TAEA</span>
-            <span class="cval red" id="r-taea-groupe">—</span>
-          </div>
-        </div>
-
-        <div class="compare-card delegation">
-          <div class="compare-card-header">✅ Contrat délégué</div>
-          <div class="compare-row">
-            <span class="clabel">Mensualité</span>
-            <span class="cval green" id="r-mensuel-deleg">—</span>
-          </div>
-          <div class="compare-row">
-            <span class="clabel">Coût total</span>
-            <span class="cval green" id="r-total-deleg">—</span>
-          </div>
-          <div class="compare-row">
-            <span class="clabel">TAEA estimé</span>
-            <span class="cval green" id="r-taea-deleg">—</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- PARTENAIRES -->
-      <div class="partenaires-section">
-        <div class="partenaires-title">🤝 Nos partenaires — Broker Digital Insur</div>
-        <div class="partenaires-grid">
-          <div class="partenaire-pill highlight">
-            <span class="p-icon">🔵</span>Suravenir
-          </div>
-          <div class="partenaire-pill">
-            <span class="p-icon">🟠</span>MNCAP
-          </div>
-          <div class="partenaire-pill">
-            <span class="p-icon">🔴</span>SwissLife
-          </div>
-          <div class="partenaire-pill exclu">
-            <div class="exclu-tag">EXCLU</div>
-            <span class="p-icon">⚫</span>CACI
-          </div>
-        </div>
-      </div>
-
-      <!-- DROITS LOI LEMOINE -->
-      <div class="lemoine-section">
-        <div class="lemoine-title">⚖️ Vos droits sous la Loi Lemoine</div>
-        <div class="lemoine-right">
-          <span class="lr-icon">🔄</span>
-          <span class="lr-text"><strong>Résiliation à tout moment</strong> — Plus besoin d'attendre la date anniversaire. Zéro frais, zéro délai.</span>
-        </div>
-        <div class="lemoine-right">
-          <span class="lr-icon">🏥</span>
-          <span class="lr-text"><strong>Questionnaire de santé supprimé</strong> — Pour les prêts ≤ 200 000 € remboursés avant vos 60 ans.</span>
-        </div>
-        <div class="lemoine-right">
-          <span class="lr-icon">🤝</span>
-          <span class="lr-text"><strong>Équivalence de garanties</strong> — Le contrat de remplacement doit couvrir les mêmes garanties que le contrat bancaire.</span>
-        </div>
-        <div class="lemoine-right">
-          <span class="lr-icon">⚡</span>
-          <span class="lr-text"><strong>Délai de réponse bancaire 10 jours</strong> — La banque ne peut pas refuser sans justification valable.</span>
-        </div>
-      </div>
-
-      <!-- WHATSAPP -->
-      <a id="wa-link" href="#" class="whatsapp-btn" target="_blank">
-        <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        Obtenir mon devis gratuit — Jeremy Dallinges
-      </a>
-    </div>
-
-    <div class="disclaimer" id="disclaimer" style="display:none">
-      Simulation indicative basée sur des taux de marché moyens. Les taux réels dépendent de votre profil et de l'offre du compagnon retenu.<br>
-      Jeremy Dallinges — Courtier en crédit immobilier et assurance emprunteur · Broker Digital Insur / Pretto Galaxy · Toulouse<br>
-      ORIAS n° 23006269 · <a href="https://www.orias.fr" target="_blank">www.orias.fr</a><br>
-      <em>Résiliation possible à tout moment conformément à la Loi Lemoine (n° 2022-270 du 28 février 2022).</em>
-    </div>
-
-    <!-- COURTIER SECTION -->
-    <div class="courtier-section">
-      <img src="{LOGO}" class="logo-img" alt="L'Agence by Pretto Toulouse">
-      <div class="courtier-info">
-        <img src="{PHOTO}" class="photo-pro" alt="Jeremy Dallinges">
-        <div class="courtier-text">
-          <div class="courtier-name">Jeremy Dallinges</div>
-          <div class="courtier-title">Courtier en assurance emprunteur</div>
-          <div class="courtier-location">📍 Toulouse</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>
 
 <script>
-  const WHATSAPP = "33609163435";
+    function simuler() {
+        const capital = parseFloat(document.getElementById('capital').value);
+        const duree = parseInt(document.getElementById('duree').value);
+        const age = parseInt(document.getElementById('age').value);
+        const quotite = parseFloat(document.getElementById('quotite').value);
 
-  function updateSlider(val) {{
-    document.getElementById('tg-display').textContent = parseFloat(val).toFixed(2).replace('.', ',') + ' %';
-  }}
+        if (!capital || !duree) return alert("Complétez les champs");
 
-  function fmt(n) {{
-    return Math.round(n).toLocaleString('fr-FR') + ' €';
-  }}
+        // Calcul simplifié expert
+        const tauxGroupe = 0.35 / 100; 
+        let tauxDeleg = age > 45 ? 0.12 / 100 : 0.07 / 100;
 
-  function fmtM(n) {{
-    return Math.round(n).toLocaleString('fr-FR') + ' €/mois';
-  }}
+        const coutGroupe = capital * tauxGroupe * duree * quotite;
+        const coutDeleg = capital * tauxDeleg * duree * quotite;
+        const ecoTot = coutGroupe - coutDeleg;
 
-  function simuler() {{
-    const capital = parseFloat(document.getElementById('capital').value) || 0;
-    const duree   = parseInt(document.getElementById('duree').value) || 0;
-    const age     = parseInt(document.getElementById('age').value) || 35;
-    const quotite = parseFloat(document.getElementById('quotite').value);
-    const tauxGroupe = parseFloat(document.getElementById('taux-groupe').value) / 100;
-
-    if (!capital || !duree) {{
-      alert('Merci de renseigner le capital emprunté et la durée restante.');
-      return;
-    }}
-
-    const capitalMoyen = capital / 2;
-    const n = duree * 12;
-
-    // GROUPE: mensualité = capital_initial × taux_annuel / 12
-    const mensuelGroupe = capital * tauxGroupe / 12 * quotite;
-    const totalGroupe   = mensuelGroupe * n;
-
-    // DÉLÉGATION: estimation selon âge et quotité
-    // Tarif moyen marché individuel: environ 0,05% à 0,12% sur capital restant dû
-    // Simplifié: on prend un taux annuel moyen
-    let tauxDeleg = 0.06; // 0,06% par an = excellent tarif marché
-    if (age > 50) tauxDeleg = 0.10;
-    else if (age > 45) tauxDeleg = 0.09;
-    else if (age > 40) tauxDeleg = 0.08;
-    else if (age > 35) tauxDeleg = 0.07;
-
-    const tauxDelegPct = tauxDeleg / 100;
-    const mensuelDeleg = capital * tauxDelegPct / 12 * quotite;
-    const totalDeleg   = mensuelDeleg * n;
-
-    const ecoPar  = mensuelGroupe - mensuelDeleg;
-    const ecoTot  = totalGroupe - totalDeleg;
-
-    // Urgence: perte mensuelle
-    document.getElementById('res-eco').textContent = fmt(ecoTot);
-    document.getElementById('res-eco-sub').textContent = 'En passant de ' + fmtM(mensuelGroupe) + ' à ' + fmtM(mensuelDeleg);
-
-    document.getElementById('urgency-text').innerHTML =
-      'Chaque mois sans action = <span>' + fmt(ecoPar) + '</span> perdus inutilement.';
-
-    // Comparatif
-    document.getElementById('r-mensuel-groupe').textContent = fmtM(mensuelGroupe);
-    document.getElementById('r-total-groupe').textContent   = fmt(totalGroupe);
-    document.getElementById('r-taea-groupe').textContent    = (parseFloat(document.getElementById('taux-groupe').value)).toFixed(2).replace('.', ',') + ' %';
-
-    document.getElementById('r-mensuel-deleg').textContent  = fmtM(mensuelDeleg);
-    document.getElementById('r-total-deleg').textContent    = fmt(totalDeleg);
-    document.getElementById('r-taea-deleg').textContent     = tauxDeleg.toFixed(2).replace('.', ',') + ' %';
-
-    // WhatsApp
-    const msg = encodeURIComponent(
-      'Bonjour Jeremy ! Je viens de faire une simulation assurance emprunteur :\\n' +
-      '• Capital : ' + fmt(capital) + '\\n' +
-      '• Durée restante : ' + duree + ' ans\\n' +
-      '• Âge : ' + age + ' ans\\n' +
-      '• Coût groupe actuel : ' + fmtM(mensuelGroupe) + '\\n' +
-      '• Économie estimée : ' + fmt(ecoTot) + '\\n\\n' +
-      'Je souhaite obtenir un devis de délégation d\\'assurance.'
-    );
-    document.getElementById('wa-link').href = 'https://wa.me/' + WHATSAPP + '?text=' + msg;
-
-    document.getElementById('results').classList.add('show');
-    document.getElementById('disclaimer').style.display = 'block';
-
-    setTimeout(() => {{
-      document.getElementById('results').scrollIntoView({{ behavior: 'smooth', block: 'nearest' }});
-    }}, 100);
-  }}
+        document.getElementById('res-eco').textContent = Math.round(ecoTot).toLocaleString() + " €";
+        document.getElementById('results').classList.add('show');
+        
+        const msg = encodeURIComponent(`Bonjour Jeremy, simulation Lemoine : Capital ${capital}€, Durée ${duree} ans. Économie : ${Math.round(ecoTot)}€.`);
+        document.getElementById('wa-link').href = `https://wa.me/33609163435?text=${msg}`;
+    }
 </script>
+
 </body>
-</html>'''
-
-with open('/mnt/user-data/outputs/simulateur_lemoine_dallinges.html', 'w') as f:
-    f.write(HTML)
-
-print("Fichier créé:", len(HTML), "chars")
-PYEOF
-Sortie
-
+</html>
